@@ -8,10 +8,11 @@
   transition: transform 0.4s ease;
 }
 .croft-slide-list .croft-slide {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
   overflow: hidden;
+  box-sizing: border-box;
+}
+.croft-slide-list .croft-slide img {
+  margin: 0 15px;
 }
 .arrow {
   position: absolute;
