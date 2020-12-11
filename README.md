@@ -7,8 +7,8 @@ Then add in the html <script> tag:<br>
 <script>
   const croftSlider = new CroftSlider({
      slider: '.slider', // insert the slider class
-     slide: '.slide', // insert the slide class
-     slidesToShow: 3 // count of slides on the page
+     slide: '.slide',   // insert the slide class
+     slidesToShow: 3    // count of slides on the page
   });
  </script>
  </pre>
