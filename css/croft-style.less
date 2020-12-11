@@ -1,0 +1,37 @@
+.croft-slider {
+   overflow: hidden;
+}
+
+.croft-slide-list {
+   display: flex;
+   position: relative;
+   will-change: transform;
+   transition: transform .4s ease;
+
+   .croft-slide {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      overflow: hidden;
+   }
+}
+
+.arrow {
+   position: absolute;
+   top: 40px;
+   width: 40px;
+   height: 40px;
+   border: none;
+   outline: none;
+   cursor: pointer;
+
+   &.arrow-left {
+      background: url(../img/icon/chevron-left-solid.svg) center center no-repeat;
+      left: 25px;
+   }
+
+   &.arrow-right {
+      background: url(../img/icon/chevron-right-solid.svg) center center no-repeat;
+      right: 25px;
+   }
+}
