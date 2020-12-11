@@ -3,6 +3,7 @@ Custom slider for training
 
 You can use by including croft-slider.js and croft-style.css in your html page.
 Then add in the html <script> tag:
+  
 <script>
   const croftSlider = new CroftSlider({
      slider: '.slider', // insert the slider class
