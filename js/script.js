@@ -17,8 +17,8 @@ class CroftSlider {
          this.wrap.appendChild(elem);
       });
       this.slider.appendChild(this.wrap);
-      this.slideWidth = Math.floor(100 / this.slidesToShow);
-      console.log(this.slideWidth);
+      this.slideWidth = 100 / this.slidesToShow;
+      this.position = 0;
 
       this.init();
    }
@@ -43,11 +43,17 @@ class CroftSlider {
       this.slider.appendChild(this.arrowRight);
 
       this.arrowLeft.addEventListener('click', () => {
-         this.wrap.style.transform += `translateX(${this.slideWidth}%)`;
+         console.log(this.position);
+         if (this.position === 0) return;
+         this.position++;
+         this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
       });
 
       this.arrowRight.addEventListener('click', () => {
-         this.wrap.style.transform += `translateX(-${this.slideWidth}%)`;
+         console.log(this.position);
+         if (Math.abs(this.position) == this.slide.length - this.slidesToShow) return;
+         this.position--;
+         this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;         
       });
    }
 }
