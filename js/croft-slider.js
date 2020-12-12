@@ -64,7 +64,11 @@ class CroftSlider {
 
    addEvent() {
       this.arrowLeft.addEventListener('click', () => {
-         if (this.position === 0) return;
+         if (this.position >= - this.slidesToScroll) {
+            this.position = 0;
+            this.wrap.style.transform = `translateX(${this.position})`;
+            return;
+         }
          this.position += this.slidesToScroll;
          this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
       });
