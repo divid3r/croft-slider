@@ -49,6 +49,9 @@ class CroftSlider {
          this.slideWrap = document.createElement('div')
          this.slideWrap.classList.add('croft-slide-wrap');
          this.slideWrap.style.flex = `0 0 ${100 / this.slidesToShow}%`;
+         if (this.variableHeight === false) {
+            this.slideWrap.style.height = `400px`;
+         }
          this.slideWrap.appendChild(elem);
          this.wrap.appendChild(this.slideWrap);
       });
