@@ -4,19 +4,18 @@ class CroftSlider {
    constructor({
       slider,
       slide,
+      slidesPadding = 10,
       slidesToShow = 3
    }) {
       this.slider = document.querySelector(slider);
       this.slide = document.querySelectorAll(slide);
+      this.slidesPadding = slidesPadding;
       this.slidesToShow = slidesToShow;
       this.arrowLeft = document.createElement('button');
       this.arrowRight = document.createElement('button');
       this.wrap = document.createElement('div');
-      this.slide.forEach(elem => {
-         elem.style.flex = `0 0 ${100 / this.slidesToShow}%`;
-         this.wrap.appendChild(elem);
-      });
       this.slider.appendChild(this.wrap);
+      this.slideWrap = null;
       this.slideWidth = 100 / this.slidesToShow;
       this.position = 0;
 
@@ -25,6 +24,7 @@ class CroftSlider {
 
    init() {
       this.addClass();
+      this.addStyle();
       this.addArrow();
    }
 
@@ -36,6 +36,17 @@ class CroftSlider {
       this.arrowLeft.classList.add('arrow-left');
       this.arrowRight.classList.add('arrow');
       this.arrowRight.classList.add('arrow-right');
+   }
+
+   addStyle() {
+      this.slide.forEach(elem => {
+         elem.style.margin = `${this.slidesPadding}px`;
+         this.slideWrap = document.createElement('div')
+         this.slideWrap.classList.add('croft-slide-wrap');
+         this.slideWrap.style.flex = `0 0 ${100 / this.slidesToShow}%`;
+         this.slideWrap.appendChild(elem);
+         this.wrap.appendChild(this.slideWrap);
+      });
    }
 
    addArrow() {

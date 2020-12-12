@@ -8,6 +8,7 @@ Then add in the html <script> tag:<br>
   const croftSlider = new CroftSlider({
      slider: '.slider', // insert your slider class
      slide: '.slide',   // insert your slide class
+     slidesPadding: 10, // paddings between slides
      slidesToShow: 3    // count of slides on the page
   });
  </script>
