@@ -9,7 +9,8 @@ Then add in the html <b><script></b> tag:<br>
      slider: '.slider', // insert your slider class
      slide: '.slide',   // insert your slide class
      slidesPadding: 10, // paddings between slides
-     slidesToShow: 3    // count of slides on the page
+     slidesToShow: 3,   // count of slides on the page
+     slidesToScroll: 2  // how many slides do you want to scroll
   });
  </script>
  </pre>

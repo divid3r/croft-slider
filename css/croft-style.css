@@ -16,12 +16,13 @@
   justify-content: center;
 }
 .croft-slide-list .croft-slide-wrap .croft-slide {
-  border: 2px solid #fff;
+  border: 2px solid lightgreen;
   overflow: hidden;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 5px;
 }
 .arrow {
   position: absolute;
