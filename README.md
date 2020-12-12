@@ -5,12 +5,13 @@ You can use it by including <b>croft-slider.js</b> and <b>croft-style.css</b> in
 Then add in the html <b><script></b> tag:<br>
 <pre>
 <script>
-  const croftSlider = new CroftSlider({
-     slider: '.slider', // insert your slider class
-     slide: '.slide',   // insert your slide class
-     slidesPadding: 10, // paddings between slides
-     slidesToShow: 3,   // count of slides on the page
-     slidesToScroll: 2  // how many slides do you want to scroll
-  });
+   new CroftSlider({
+      slider: '.slider',     // insert your slider class
+      slide: '.slide',       // insert your slide class
+      slidesPadding: 10,     // paddings between slides (in pixels)
+      slidesToShow: 3,       // count of slides on the page
+      slidesToScroll: 2,     // how many slides do you want to scroll
+      variableHeight: false, // different slide heights, check true/false
+   });
  </script>
  </pre>

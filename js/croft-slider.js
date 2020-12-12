@@ -6,13 +6,15 @@ class CroftSlider {
       slide,
       slidesPadding = 10,
       slidesToShow = 3,
-      slidesToScroll = 1
+      slidesToScroll = 1,
+      variableHeight = false
    }) {
       this.slider = document.querySelector(slider);
       this.slide = document.querySelectorAll(slide);
       this.slidesPadding = slidesPadding;
       this.slidesToShow = slidesToShow;
       this.slidesToScroll = slidesToScroll;
+      this.variableHeight = variableHeight;
       this.arrowLeft = document.createElement('button');
       this.arrowRight = document.createElement('button');
       this.wrap = document.createElement('div');
@@ -65,7 +67,11 @@ class CroftSlider {
       });
 
       this.arrowRight.addEventListener('click', () => {
-         if (Math.abs(this.position) >= this.slide.length - this.slidesToShow) return;
+         if (Math.abs(this.position) >= this.slide.length - this.slidesToScroll - this.slidesToShow) {
+            this.position = -(this.slide.length - this.slidesToShow);
+            this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
+            return;
+         }
          this.position -= this.slidesToScroll;
          this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
       });
