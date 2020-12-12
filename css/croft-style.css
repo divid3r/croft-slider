@@ -1,6 +1,7 @@
 .croft-slider {
   overflow: hidden;
   position: relative;
+  height: 450px;
 }
 .croft-slide-list {
   display: flex;
@@ -25,7 +26,7 @@
 }
 .arrow {
   position: absolute;
-  top: calc(50% - 20px);
+  bottom: 0px;
   width: 40px;
   height: 40px;
   border: none;
@@ -34,9 +35,9 @@
 }
 .arrow.arrow-left {
   background: url(../img/icon/chevron-left-solid.svg) center center no-repeat;
-  left: 25px;
+  left: 45%;
 }
 .arrow.arrow-right {
   background: url(../img/icon/chevron-right-solid.svg) center center no-repeat;
-  right: 25px;
+  right: 45%;
 }
