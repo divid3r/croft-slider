@@ -18,6 +18,10 @@
 .croft-slide-list .croft-slide-wrap .croft-slide {
   border: 2px solid #fff;
   overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .arrow {
   position: absolute;
