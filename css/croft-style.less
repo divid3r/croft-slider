@@ -7,7 +7,7 @@
 .croft-slide-list {
    display: flex;
    will-change: transform;
-   transition: transform .4s ease;
+   transition: transform 1s ease;
 
    .croft-slide-wrap {
       overflow: hidden;
@@ -45,5 +45,19 @@
    &.arrow-right {
       background: url(../img/icon/chevron-right-solid.svg) center center no-repeat;
       right: 45%;
+   }
+}
+
+.play-button {
+   border: none;
+   outline: none;
+   cursor: pointer;
+   width: 30px;
+   height: 30px;
+   position: absolute;
+   background: url(../img/icon/play-solid.svg) center center no-repeat;
+
+   &.playon {
+      background: url(../img/icon/pause-solid.svg) center center no-repeat;
    }
 }

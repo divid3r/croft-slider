@@ -12,6 +12,7 @@ Then add in the html <b><script></b> tag:<br>
       slidesToShow: 3,       // count of slides on the page
       slidesToScroll: 2,     // how many slides do you want to scroll
       variableHeight: false, // different slide heights, check true/false
+      autoplayDelay: 4000,   // delay before a slide moving
    });
  </script>
  </pre>

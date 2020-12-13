@@ -7,7 +7,8 @@ class CroftSlider {
       slidesPadding = 10,
       slidesToShow = 3,
       slidesToScroll = 1,
-      variableHeight = false
+      variableHeight = false,
+      autoplayDelay = 5000
    }) {
       this.slider = document.querySelector(slider);
       this.slide = document.querySelectorAll(slide);
@@ -22,6 +23,9 @@ class CroftSlider {
       this.slideWrap = null;
       this.slideWidth = 100 / this.slidesToShow;
       this.position = 0;
+      this.autoplay = false;
+      this.autoplayDelay = autoplayDelay;
+      this.playButton = document.createElement('button');
 
       this.init();
    }
@@ -41,6 +45,9 @@ class CroftSlider {
       this.arrowLeft.classList.add('arrow-left');
       this.arrowRight.classList.add('arrow');
       this.arrowRight.classList.add('arrow-right');
+      this.playButton.classList.add('play-button');
+      this.playButton.id = 'playBtn';
+      this.playButton.title = 'turn on autoplay';
    }
 
    addStyle() {
@@ -55,6 +62,10 @@ class CroftSlider {
          this.slideWrap.appendChild(elem);
          this.wrap.appendChild(this.slideWrap);
       });
+
+      this.playButton.style.top = `calc(15px + ${this.slidesPadding}px)`;
+      this.playButton.style.left = `calc(15px + ${this.slidesPadding}px)`;
+      this.slider.appendChild(this.playButton);
    }
 
    addArrow() {
@@ -81,6 +92,26 @@ class CroftSlider {
          }
          this.position -= this.slidesToScroll;
          this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
+      });
+
+      let temp;
+      this.playButton.addEventListener('click', () => {
+         this.playButton.classList.toggle('playon');
+
+         if (this.playButton.classList.contains('playon')) {
+            var autoplayId = setInterval(() => {
+               temp = autoplayId;
+               this.position -= this.slidesToScroll;
+               this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
+               if (Math.abs(this.position) >= this.slide.length - this.slidesToScroll - this.slidesToShow) {
+                  clearInterval(temp);
+                  this.playButton.classList.toggle('playon');
+                  return;
+               }
+            }, this.autoplayDelay);
+         } else {
+            clearInterval(temp);
+         }
       });
    }
 }
