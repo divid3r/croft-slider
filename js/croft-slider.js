@@ -103,10 +103,11 @@ class CroftSlider {
                temp = autoplayId;
                this.position -= this.slidesToScroll;
                this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
-               if (Math.abs(this.position) >= this.slide.length - this.slidesToScroll - this.slidesToShow) {
+               if (Math.abs(this.position) >= this.slide.length - this.slidesToScroll - this.slidesToShow + 2) {
                   clearInterval(temp);
+                  this.position = -(this.slide.length - this.slidesToShow);
+                  this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
                   this.playButton.classList.toggle('playon');
-                  return;
                }
             }, this.autoplayDelay);
          } else {
