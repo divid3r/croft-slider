@@ -32,7 +32,8 @@
       justify-content: center;
       
       .croft-slide {
-         border: 2px solid lightgreen;
+         // border: 2px solid lightgreen;
+         box-shadow: 0px 0px 9px #fff;
          overflow: hidden;
          box-sizing: border-box;
          display: flex;
@@ -45,7 +46,7 @@
 
 .arrow {
    position: absolute;
-   top: 80px;
+   top: calc(50% - 20px);
    width: 40px;
    height: 40px;
    border: none;
@@ -80,5 +81,52 @@
 
    &.playon {
       background: url(../img/icon/pause-solid.svg) center center no-repeat;
+   }
+}
+
+.croft-dots {
+   display: flex;
+   justify-content: center;
+   margin-top: 10px;
+
+   .croft-dot {
+      width: 13px;
+      height: 13px;
+      background-color: #272727;
+      margin: 5px;
+      border-radius: 50%;
+      box-sizing: border-box;
+      border: 2px solid lightgreen;
+      cursor: pointer;
+      position: relative;
+
+      &.active {
+         &::after {
+            position: absolute;
+            content: '';
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            border: 2px solid lightgreen;
+            background-color: lightgreen;
+            box-shadow: 0px 0px 4px #fff;
+         } 
+      }
+
+      &:hover {
+         &::after {
+            position: absolute;
+            content: '';
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            border: 2px solid lightgreen;
+            background-color: lightgreen;
+         }
+      }
    }
 }

@@ -8,7 +8,9 @@ class CroftSlider {
       slidesToShow = 3,
       slidesToScroll = 1,
       variableHeight = false,
-      autoplayDelay = 5000
+      autoplayDelay = 5000,
+      arrows = true,
+      dots = false
    }) {
       this.slider = document.querySelector(slider);
       this.slide = document.querySelectorAll(slide);
@@ -18,6 +20,10 @@ class CroftSlider {
       this.variableHeight = variableHeight;
       this.arrowLeft = document.createElement('button');
       this.arrowRight = document.createElement('button');
+      this.arrows = arrows;
+      this.dots = dots;
+      this.dotsWrap = document.createElement('div');
+      this.dotsAll = null;
       this.wrap = document.createElement('div');
       this.slider.appendChild(this.wrap);
       this.slideWrap = null;
@@ -31,10 +37,11 @@ class CroftSlider {
    }
 
    init() {
+      this.addArrow();
+      this.addDots();
+      this.addEvent();
       this.addClass();
       this.addStyle();
-      this.addArrow();
-      this.addEvent();
    }
 
    addClass() {
@@ -45,10 +52,11 @@ class CroftSlider {
       this.arrowLeft.classList.add('arrow-left');
       this.arrowRight.classList.add('arrow');
       this.arrowRight.classList.add('arrow-right');
-      this.arrow;
+      this.arrows;
       this.playButton.classList.add('play-button');
       this.playButton.id = 'playBtn';
       this.playButton.title = 'turn on autoplay';
+      this.dotsWrap.classList.add('croft-dots');
    }
 
    addStyle() {
@@ -68,29 +76,57 @@ class CroftSlider {
    }
 
    addArrow() {
-      this.slider.appendChild(this.arrowLeft);
-      this.slider.appendChild(this.arrowRight);
-      this.arrow = document.querySelectorAll('.arrow');
+      if (this.arrows === true) {
+         this.slider.appendChild(this.arrowLeft);
+         this.slider.appendChild(this.arrowRight);
+         this.arrows = document.querySelectorAll('.arrow');
+      }
+   }
+
+   addDots() {
+       if (this.dots === true) {
+         this.slide.forEach(elem => {
+            const div  = document.createElement('div');
+            this.dotsWrap.appendChild(div);
+         });
+         this.dotsAll = this.dotsWrap.children;
+         let i = 0;
+         Array.from(this.dotsAll).forEach(elem => {
+            elem.classList.add('croft-dot');   
+            elem.setAttribute('data-id', i);
+            i++;
+         });
+         this.dotsAll[0].classList.add('active');
+         this.slider.appendChild(this.dotsWrap);
+      }
    }
 
    addEvent() {
       this.arrowLeft.addEventListener('click', () => {
          if (this.position >= - this.slidesToScroll) {
+            this.dotsAll[Math.abs(this.position)].classList.remove('active');
             this.position = 0;
+            this.dotsAll[Math.abs(this.position)].classList.add('active');
             this.wrap.style.transform = `translateX(${this.position})`;
             return;
          }
+         this.dotsAll[Math.abs(this.position)].classList.remove('active');
          this.position += this.slidesToScroll;
+         this.dotsAll[Math.abs(this.position)].classList.add('active');
          this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
       });
 
       this.arrowRight.addEventListener('click', () => {
          if (Math.abs(this.position) >= this.slide.length - this.slidesToScroll - this.slidesToShow) {
+            this.dotsAll[Math.abs(this.position)].classList.remove('active');
             this.position = -(this.slide.length - this.slidesToShow);
+            this.dotsAll[Math.abs(this.position)].classList.add('active');
             this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
             return;
          }
+         this.dotsAll[Math.abs(this.position)].classList.remove('active');
          this.position -= this.slidesToScroll;
+         this.dotsAll[Math.abs(this.position)].classList.add('active');
          this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
       });
 
@@ -115,15 +151,24 @@ class CroftSlider {
          }
       });
 
-      this.wrap.addEventListener('mouseover', () => {
-         this.arrow[0].classList.add('show');
-         this.arrow[1].classList.add('show');
-      });
-      this.wrap.addEventListener('mouseleave', () => {
-         this.arrow[0].classList.remove('show');
-         this.arrow[1].classList.remove('show');
-      });
+      if (this.dots === true) {
+         let temp = this.dotsAll[0];
+         this.dotsAll[21].remove();
+         this.dotsAll[20].remove();
+         
+         this.dotsWrap.addEventListener('click', (event) => {
+            let target = event.target;
 
-      console.log(this.wrap);
+            if (target.matches('.croft-dot')) {
+               if (target != temp) {
+                  target.classList.add('active');
+                  temp.classList.remove('active');
+                  temp = target;
+                  this.position = - target.getAttribute('data-id');
+                  this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
+               }
+            }
+         });
+      }
    }
 }
