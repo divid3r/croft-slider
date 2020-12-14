@@ -45,6 +45,7 @@ class CroftSlider {
       this.arrowLeft.classList.add('arrow-left');
       this.arrowRight.classList.add('arrow');
       this.arrowRight.classList.add('arrow-right');
+      this.arrow;
       this.playButton.classList.add('play-button');
       this.playButton.id = 'playBtn';
       this.playButton.title = 'turn on autoplay';
@@ -63,14 +64,13 @@ class CroftSlider {
          this.wrap.appendChild(this.slideWrap);
       });
 
-      this.playButton.style.top = `calc(15px + ${this.slidesPadding}px)`;
-      this.playButton.style.left = `calc(15px + ${this.slidesPadding}px)`;
       this.slider.appendChild(this.playButton);
    }
 
    addArrow() {
       this.slider.appendChild(this.arrowLeft);
       this.slider.appendChild(this.arrowRight);
+      this.arrow = document.querySelectorAll('.arrow');
    }
 
    addEvent() {
@@ -114,5 +114,16 @@ class CroftSlider {
             clearInterval(temp);
          }
       });
+
+      this.wrap.addEventListener('mouseover', () => {
+         this.arrow[0].classList.add('show');
+         this.arrow[1].classList.add('show');
+      });
+      this.wrap.addEventListener('mouseleave', () => {
+         this.arrow[0].classList.remove('show');
+         this.arrow[1].classList.remove('show');
+      });
+
+      console.log(this.wrap);
    }
 }

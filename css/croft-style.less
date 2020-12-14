@@ -1,7 +1,22 @@
 .croft-slider {
    overflow: hidden;
    position: relative;
-   height: 450px;
+
+   &:hover {
+      .arrow {
+         &.arrow-left {
+            left: 30px;
+            transition: left, .3s ease;
+            opacity: 1;
+         }
+
+         &.arrow-right {
+            right: 30px;
+            transition: right, .3s ease;
+            opacity: 1;
+         }
+      }
+   }
 }
 
 .croft-slide-list {
@@ -13,7 +28,7 @@
       overflow: hidden;
       box-sizing: border-box;
       display: flex;
-      align-self: center;
+      align-self: flex-start;
       justify-content: center;
       
       .croft-slide {
@@ -30,7 +45,7 @@
 
 .arrow {
    position: absolute;
-   bottom: 0px;
+   top: 80px;
    width: 40px;
    height: 40px;
    border: none;
@@ -39,12 +54,16 @@
 
    &.arrow-left {
       background: url(../img/icon/chevron-left-solid.svg) center center no-repeat;
-      left: 45%;
+      left: 0;
+      opacity: 0;
+      transition: left, .3s ease;
    }
 
    &.arrow-right {
       background: url(../img/icon/chevron-right-solid.svg) center center no-repeat;
-      right: 45%;
+      right: 0;
+      opacity: 0;
+      transition: right, .3s ease;
    }
 }
 
@@ -52,9 +71,11 @@
    border: none;
    outline: none;
    cursor: pointer;
-   width: 30px;
-   height: 30px;
+   width: 25px;
+   height: 25px;
    position: absolute;
+   top: 25px;
+   left: 25px;
    background: url(../img/icon/play-solid.svg) center center no-repeat;
 
    &.playon {
