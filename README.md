@@ -1,7 +1,7 @@
 # croft-slider
 Custom slider for training
 
-You can use it by including <b>croft-slider.js</b> then <b>your script file </b>(for example, script.js) before closing tags </body> and </html>.<br>
+You can use it by including <b>croft-slider.js</b> then <b>your script file </b>(for example, script.js)<br> before closing tags </body> and </html>.<br>
 Add <b>croft-style.css</b> in the <head> tag (for example, <link rel="stylesheet" href="css/style.css">).<br>
 In your script add the code with the slider's settins:<br>
 <pre>
