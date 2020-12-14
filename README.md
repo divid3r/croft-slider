@@ -4,9 +4,9 @@ Custom slider for training
 You can use it by including:<br>
 <b>croft-slider.js</b><br>
 <b>yourScript.js</b><br>
-files before closing tags <b>body</b> and <b>html></b>.<br>
+files before closing tags <b>body</b> and <b>html</b>.<br>
 Add <b>croft-style.css</b> file in the <b>head</b> tag.<br>
-Add the code in your script file the next settins:<br>
+Add the code in your script file:<br>
 <pre>
 <script>
    new CroftSlider({
