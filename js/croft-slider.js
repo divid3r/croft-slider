@@ -113,6 +113,7 @@ class CroftSlider {
             this.wrap.style.transform = `translateX(${this.position})`;
             return;
          }
+
          this.dotsAll[- this.position].classList.remove('active');
          this.position += this.slidesToScroll;
          this.dotsAll[- this.position].classList.add('active');
@@ -127,6 +128,7 @@ class CroftSlider {
             this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
             return;
          }
+
          this.dotsAll[- this.position].classList.remove('active');
          this.position -= this.slidesToScroll;
          this.dotsAll[- this.position].classList.add('active');
@@ -143,7 +145,8 @@ class CroftSlider {
                this.position -= this.slidesToScroll;
                this.dotsAll[- this.position].classList.add('active');
                this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
-               if (Math.abs(this.position) >= this.slide.length - this.slidesToScroll - this.slidesToShow + 2) {
+
+               if (Math.abs(this.position) >= this.slide.length - this.slidesToScroll - this.slidesToShow) {
                   clearInterval(tempPlay);
                   this.position = -(this.slide.length - this.slidesToShow);
                   this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
