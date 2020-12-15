@@ -15,7 +15,7 @@ new CroftSlider({
    slidesToShow: 3,       // count of slides on the page
    slidesToScroll: 3,     // how many slides do you want to scroll
    variableHeight: false, // different slide heights, check true/false
-   autoplayDelay: 4000,   // delay before a slide moving
+   autoplayDelay: 4000,   // delay before a slide moving (in milliseconds)
    arrows: true,          // show arrows (default = true)
    dots: false,           // show dots (defauot = false)
 });

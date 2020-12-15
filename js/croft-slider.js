@@ -102,57 +102,60 @@ class CroftSlider {
    }
 
    addEvent() {
+      let tempPlay,
+          tempDot = this.dotsAll[0];
+
       this.arrowLeft.addEventListener('click', () => {
          if (this.position >= - this.slidesToScroll) {
-            this.dotsAll[Math.abs(this.position)].classList.remove('active');
+            this.dotsAll[- this.position].classList.remove('active');
             this.position = 0;
-            this.dotsAll[Math.abs(this.position)].classList.add('active');
+            this.dotsAll[- this.position].classList.add('active');
             this.wrap.style.transform = `translateX(${this.position})`;
             return;
          }
-         this.dotsAll[Math.abs(this.position)].classList.remove('active');
+         this.dotsAll[- this.position].classList.remove('active');
          this.position += this.slidesToScroll;
-         this.dotsAll[Math.abs(this.position)].classList.add('active');
+         this.dotsAll[- this.position].classList.add('active');
          this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
       });
 
       this.arrowRight.addEventListener('click', () => {
          if (Math.abs(this.position) >= this.slide.length - this.slidesToScroll - this.slidesToShow) {
-            this.dotsAll[Math.abs(this.position)].classList.remove('active');
+            this.dotsAll[- this.position].classList.remove('active');
             this.position = -(this.slide.length - this.slidesToShow);
-            this.dotsAll[Math.abs(this.position)].classList.add('active');
+            this.dotsAll[- this.position].classList.add('active');
             this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
             return;
          }
-         this.dotsAll[Math.abs(this.position)].classList.remove('active');
+         this.dotsAll[- this.position].classList.remove('active');
          this.position -= this.slidesToScroll;
-         this.dotsAll[Math.abs(this.position)].classList.add('active');
+         this.dotsAll[- this.position].classList.add('active');
          this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
       });
 
-      let temp;
       this.playButton.addEventListener('click', () => {
          this.playButton.classList.toggle('playon');
 
          if (this.playButton.classList.contains('playon')) {
             var autoplayId = setInterval(() => {
-               temp = autoplayId;
+               tempPlay = autoplayId;
+               this.dotsAll[- this.position].classList.remove('active');
                this.position -= this.slidesToScroll;
+               this.dotsAll[- this.position].classList.add('active');
                this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
                if (Math.abs(this.position) >= this.slide.length - this.slidesToScroll - this.slidesToShow + 2) {
-                  clearInterval(temp);
+                  clearInterval(tempPlay);
                   this.position = -(this.slide.length - this.slidesToShow);
                   this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
                   this.playButton.classList.toggle('playon');
                }
             }, this.autoplayDelay);
          } else {
-            clearInterval(temp);
+            clearInterval(tempPlay);
          }
       });
 
       if (this.dots === true) {
-         let temp = this.dotsAll[0];
          this.dotsAll[21].remove();
          this.dotsAll[20].remove();
          
@@ -160,13 +163,10 @@ class CroftSlider {
             let target = event.target;
 
             if (target.matches('.croft-dot')) {
-               if (target != temp) {
-                  target.classList.add('active');
-                  temp.classList.remove('active');
-                  temp = target;
-                  this.position = - target.getAttribute('data-id');
-                  this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
-               }
+               this.dotsAll[- this.position].classList.remove('active');
+               this.position = - target.getAttribute('data-id');
+               this.dotsAll[- this.position].classList.add('active');
+               this.wrap.style.transform = `translateX(${this.position * this.slideWidth}%)`;
             }
          });
       }
