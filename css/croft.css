@@ -1,0 +1,6 @@
+.croft-slider {
+  overflow: hidden;
+}
+.croft-slider .croft-slide-list {
+  display: flex;
+}
